@@ -61,9 +61,9 @@
 \node at (current page.north west)
 {\begin{tikzpicture}[remember picture,overlay]
 \node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{background}}; % Background image
-\draw[anchor=north] (midpoint) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering The Search for a Title\\[15pt] % Book title
-{\Large A Profound Subtitle}\\[20pt] % Subtitle
-{\huge Dr. John Smith}}}; % Author name
+\draw[anchor=north] (midpoint) node [fill=ocre!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering The So Long Introduction to \LaTeX \\[15pt] % Book title
+{\Large \LaTeX Study Notes Based On Tobias Oetiker's Excellent Book}\\[20pt] % Subtitle
+{\huge Roger Young}}}; % Author name
 \end{tikzpicture}};
 \end{tikzpicture}
 \vfill
@@ -77,15 +77,15 @@
 ~\vfill
 \thispagestyle{empty}
 
-\noindent Copyright \copyright\ 2013 John Smith\\ % Copyright notice
+\noindent Copyright \copyright\ 2017 Roger Young\\ % Copyright notice
 
-\noindent \textsc{Published by Publisher}\\ % Publisher
+\noindent \textsc{Edited by Roger Young}\\ % Publisher
 
-\noindent \textsc{book-website.com}\\ % URL
+\noindent \textsc{\url{https://hiatcg.github.io/}}\\ % URL
 
-\noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information
+\noindent All Rights Unreserved.\\ % License information
 
-\noindent \textit{First printing, March 2013} % Printing/edition date
+\noindent \textit{Version 20170320, \today} % Printing/edition date
 
 %----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
@@ -115,11 +115,22 @@
 
 \chapterimage{chapter_head_2.pdf} % Chapter heading image
 
-\chapter{Text Chapter}
+\chapter{The Most Fundamental Truth About \LaTeX}
+This chapter presents the most fundamental information that we should know about \LaTeX, which will give us a overview of \LaTeX.
 
-\section{Paragraphs of Text}\index{Paragraphs of Text}
+\section{\TeX ,\LaTeX, and \LaTeXe }\index{\TeX ,\LaTeX, and \LaTeXe }
+\TeX is a computer program created by Donald E. Knuth. It is aimed at
+typesetting text and mathematical formulae. Knuth started writing the TEX
+typesetting engine in 1977 to explore the potential of the digital printing
+equipment that was beginning to infiltrate the publishing industry at that
+time, especially in the hope that he could reverse the trend of deteriorating
+typographical quality that he saw affecting his own books and articles. TEX
+as we use it today was released in 1982, with some slight enhancements added
+in 1989 to better support 8-bit characters and multiple languages. TEX is
+renowned for being extremely stable, for running on many different kinds of
+computers, and for being virtually bug free. The version number of TEX is
+converging to and is now at 3.141592653.
 
-\lipsum[1-7] % Dummy text
 
 %------------------------------------------------
 
