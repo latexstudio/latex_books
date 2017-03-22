@@ -1,0 +1,64 @@
+\documentclass[utf8]{book}
+
+\usepackage{ctex}
+
+% syntonly可以在导言区使用\syntaxonly命令，只排错，不生成DVI或PDF文档
+\usepackage{syntonly}
+% 如果需要生存文档，请将下一行注释掉
+% \syntaxonly
+
+
+
+\begin{document}
+	
+	\newcommand{\latexcommand}[1]{\textbf{\textbackslash #1}}
+	
+	\chapter{基础知识}
+	\section{编码实践}
+	中文编码将以使用ctex宏包，文档类使用UTF-8编码，并且使用xelatex命令编译。
+	\section{\LaTeX 中的字符}
+	\LaTeX 文档源代码中，\textbf{空格键}和\textbf{Tab键}输入的空白字符被视为“空格”。连续的多个空白字符被视为一个空格。每一行开头的空格忽略不计。
+	
+	行末的回车视为一个空格，所导致的效果一般是换行，但不分段。连续的两个回车，也就是空行，会将文字分段。多个连续的（或者以空白字符分隔的）空行会被认为是一个空行。也可以在行末使用命令\latexcommand{par} 强制分段。
+	
+	\LaTeX 原文档使用“\%”字符来表示注释。在这个字符到其后第一个回车符之前的字符都将被忽略。
+	
+	\subsection{\LaTeX 的特殊字符的输入}
+	\begin{tabular}{|c|c|c|}
+		\hline
+		特殊字符 & \LaTeX 中特殊意义 & 输入方式 \\
+		\hline
+		\# &  & \\
+		\hline
+		\$ & 用于排版\textbf{行内}数学公式 & \\
+		\hline
+		\% & & \\
+		\hline
+		\& & 用于输入表格，分隔每列 & \\
+		\hline
+		\{ & & \\
+		\hline
+		\}& & \\
+		\hline
+		\_ & 数学公式中用于表示下标 &  \\
+		\hline
+		\^ & 数学公式中用于表示上标 & \latexcommand{\^} \\
+		\hline
+		\textbackslash  & 输入特殊字符，输入命令 & \latexcommand{textbackslash} \\
+		\hline
+		\textbackslash [  & 输入公式块 & \latexcommand{textbackslash} [ \\
+		\hline
+	\end{tabular}
+	
+	\subsection{特殊标点符号的输入}
+		\LaTeX 中有三种长度的“横线”可以使用：连字号（-）、短破折号（--）和长破折号（---）。连字号主要用来组成复合词（father-in-law）、短破折号用来表示数字范围（2007--2011 ）、长破折号作为破折号使用（Yes---or No?）。
+	
+		省略号（\ldots）的输入可以采用命令\latexcommand{ldots}、\latexcommand{dots}，这两个命令等价。
+	
+		波浪号有两种：其中“\~ ”可以使用命令“\latexcommand{textbackslash}\~”输入，$ \sim $ 可以使用\latexcommand{sim}输入。
+		
+
+		
+		
+	
+\end{document}
