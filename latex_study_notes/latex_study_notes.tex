@@ -12,8 +12,28 @@
 \usepackage{listings}
 \usepackage{graphicx}
 
-\newcommand{\latexcommand}[1]{\textbf{\textbackslash #1}}
-\newcommand{\latexpackage}[1]{\textbf{\underline{#1}}}
+\graphicspath{{figures/}}
+
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{tikz}
+
+% hyperref将很多东西都封装成链接，易与其他包冲突，一般放在最后。
+\usepackage{hyperref}
+
+\usepackage{makeidx}
+\makeindex
+
+\newcommand{\latexcommand}[1]{\fbox{\textbf{\textbackslash #1}}}
+\newcommand{\latexpackage}[1]{\fcolorbox{blue}{yellow}{\textbf{\underline{#1}}}}
+
+\newtheorem{mathdefintion}{定义}[section]
 
 
 \title{\LaTeX 学习笔记}
@@ -92,6 +112,7 @@
 		\begin{quote}
 			冯唐易老，李广难封。屈贾谊于长沙，非无圣主；窜梁鸿于海曲，岂乏明时？所赖君子见机，达人知命。老当益壮，宁移白首之心？穷且益坚，不坠青云之志。酌贪泉而觉爽，处涸辙以犹欢。
 		\end{quote}
+	
 		\latexcommand{verse}适用于诗歌排版，首行悬挂缩进。
 		\begin{verse}
 			噫吁嚱，危乎高哉！
@@ -144,9 +165,240 @@ int main()
 }
 		\end{verbatim}
 	
-
+		\subsection{图片}
+			下面插入一张图片：
+			
+			\includegraphics[scale=0.1]{house.jpeg}
+			
+			\begin{figure}[htbp]
+				\centering
+				\includegraphics[scale=0.05]{house.jpeg}
+				\qquad
+				\includegraphics[scale=0.05]{house.jpeg}
+				
+				\includegraphics[scale=0.12]{house.jpeg}
+				\caption{并排排版图片}
+			\end{figure}
+			
+		\subsection{盒子}
+			以下是这一行是\latexcommand{mbox}的示例，可以看到\latexcommand{mbox}会生成一个基本的水平盒子，内容只有一行。也不允许分段。看看会不会换行吧（看看能否看到后面的中文哦）。
+			
+			\mbox{\footnotemark We the People of the United States, in Order to form a more perfect Union, establish Justice, insure domestic Tranquility, provide for the common defence, promote the general Welfare, and secure the Blessings of Liberty to ourselves and our Posterity, do ordain and establish this Constitution for the United States of America. 不好意思，这里您估计看不到哦}
+			\footnotetext{Constitution for the United States of America}
+			
+			|\makebox[10em]{Test some words.}|\\
+			|\makebox[10em][l]{Test some words.}|\\
+			|\makebox[10em][r]{Test some words.}|\\
+			|\makebox[10em][s]{Test some words.}|
+			
+			\fbox{老当益壮，宁移白首之心？穷且益坚，不坠青云之志。}
+			
+			三字经：\parbox[t]{3em}%
+			{人之初性本善性相近习相远}
+			\quad
+			千字文：
+			\begin{minipage}[b][8ex][t]{5em}
+				天地玄黄
+				
+				宇宙洪荒\footnote{千字文}
+			\end{minipage}
+		
+			\rule{1em}{1em} Two Black Box \rule{1em}{1em}
+			
+			We the People \rule[-.4pt]{5em}{.4pt} the United States
+			
+		\subsection{浮动体}
+		
+	\section{公式}
+		小试牛刀：
+		
+		$ f(x) = x^2 \quad f'(x) = 2x \quad f''^{2}(x)=4 $
+		
+		$ p^3_{ij} \qquad m_\mathrm{Knuth}\qquad
+		\sum_{k=1}^3 k $
+		
+		$ a^x+y \neq a^{x+y}\qquad e^{x^2} \neq {e^x}^2 $
+		
+		分式的输入可以使用\latexcommand{frac}命令，比如$ \frac{x+y}{x-y} $，可以看到，在行内输入分式时，体验很不好。可以采用\latexpackage{amsmath}包内提供的\latexcommand{dfrac}改善一下：$ \dfrac{x+y}{x-y} $。
+		
+		根式的输入可以采用\latexcommand{sqrt}命令，比如$ \sqrt{x} \Leftrightarrow x^{1/2} $、$ \sqrt[3]{2} $、$ \sqrt{x^{2} + \sqrt{y}} $、$ \sqrt{x^{2} + \sqrt{y + \sqrt{z+10^{\frac{y}{z}}}}} $。
+		
+		特殊的分式形式，如二项式结构，可以有\latexpackage{amsmath}包内提供的\latexcommand{binom}命令输入：
+		\begin{equation}
+			\binom{n}{k} =\binom{n-1}{k} + \binom{n-1}{k-1}
+		\end{equation}
+		
+		$ \underline{\underline{\underline{\underline{\underline{\overline{x+y}_0}}}}} $好吓人呀。
+		
+		$ \underbrace{\overbrace{a+b+c}^{a+\frac{3}{4}} \cdot \overbrace{d+e+f}^7}_\text{meaning of life} = 42 $
+		
+		一个多行公式：
+		\begin{multline}
+			a + b + c + d + e + f + g + h + i \\
+			= j + k + l + m + n\\
+			= o + p + q + r + s\\
+			= t + u + v + x + z \qquad
+			\rule{1em}{1em} \notag
+		\end{multline}
+		
+		更好的展示形式：
+		\begin{align}
+			a & = b + c \\
+			& = d + e
+		\end{align}
+		
+		\begin{align}
+			a & =1 & b &=2 & c &=3 \\
+			d &=-1 & e &=-2 & f &=-5
+		\end{align}
+		
+		\begin{gather}
+			a = b + c \\
+			d = e + f + g \\
+			h + i = j + k \notag \\
+			l + m = n
+		\end{gather}
+		
+		\begin{equation}
+			\begin{aligned}
+				a &= b + c \\
+				d &= e + f + g \\
+				h + i &= j + k \\
+				l + m &= ns
+			\end{aligned}
+		\end{equation}
+		
+		\begin{equation}
+			\mathbf{X} = \left(
+			\begin{array}{ccc}
+			x_1 & x_2 & \ldots \\
+			x_3 & x_4 & \ldots \\
+			\vdots & \vdots & \ddots
+			\end{array} \right)
+		\end{equation}
+		
+		\begin{equation}
+			|x| = \left\{
+			\begin{array}{rl}
+			-x & \text{if } x < 0,\\
+			0 & \text{if } x = 0,\\
+			x & \text{if } x > 0.
+			\end{array} \right.
+		\end{equation}
+		
+		\begin{equation}
+			|x| =
+			\begin{cases}
+			-x & \text{if } x < 0,\\
+			0 & \text{if } x = 0,\\
+			x & \text{if } x > 0.
+			\end{cases}
+		\end{equation}
+		
+		\begin{mathdefintion}
+			$ E = mc^2 $
+		\end{mathdefintion}
+		
+		\section{参考文献}
+		\bibliographystyle{plain}
+		
+		\index{参考文献说明} The cancer epigenome: Concepts, challenges, and therapeutic opportunities \cite{Dawson1147}
+		
+		
+		Partl~\cite{pa} has proposed that \ldots
+		
+		
+	
+	\section{颜色}
+		\large\sffamily {\color[gray]{0.6} 60\% 灰色} \\
+		{\color[rgb]{0,1,1} 青色}
+		\label{great_color}
+		
+	\section{超链接}
+		\url{http://wikipedia.org} \\
+		\nolinkurl{http://wikipedia.org} \\
+		\href{http://wikipedia.org}{Wiki}
+		\hyperref[great_color]{维基百科}
+	
+	\section{绘图}
+		绘图示例：
+		
+		\begin{tikzpicture}
+			% 定义点
+			\coordinate (ori) at (0,0);
+			\coordinate (rect) at (2cm, 2cm);
+			% 划直线
+			\draw (ori) -- (rect);		
+			\draw (5, 0) -- (6,2) --(4,3) -- cycle;
+			% 划方形
+			\draw (ori) rectangle(2, 1);
+			% 划圆
+			\draw (ori) circle (2+1);
+			% 划椭圆
+			\draw (ori) ellipse [x radius=2, y radius=1];
+			% 划直角
+			\draw (6,0) |- (7,1);
+			\draw (-1,-1) -| (-2,-3);
+			% 划弧线
+			\draw (4,0) arc (0:135:1);
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			% 划贝塞尔曲线
+			\draw (0,0) .. controls (2,1) and (3,1) .. (3,0);
+			\draw (4,0) .. controls (5,1) .. (5,0);
+			\draw[help lines] (0,0) -- (2,1) -- (3,1) -- (3,0)
+			(4,0) -- (5,1) -- (5,0);
+			% 绘制网格
+			\draw[help lines,step=0.5] (-2,-2) grid (2,2);
+			\draw[->] (-2.5,0) -- (2.5,0);
+			\draw[->] (0,-2.5) -- (0,2.5);
+			% 绘制函数图形
+			\draw[domain=-2:2] plot(\x,{\x*\x*\x});
+			\draw[domain=-2:2] plot(\x,{\x*\x-2});
+			% 写文字
+			\node (A) at (0,0) {A};
+			\node (B) at (1,0) {B};
+			\node (C) at (60:1) {C};
+			\draw (A) -- (B) -- (C) -- (A);
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\draw (0,0) circle[radius=1];
+			\fill (0,0) circle[radius=2pt];
+			\node[draw] (P) at (15:2) {center};
+			\draw[dotted] (0,0) -- (P.west);
+		\end{tikzpicture}
+		
+		\begin{tikzpicture}
+			\draw[-stealth,line width=0.2pt] (-0.5,0) -- (4.5,0);
+			\draw[-stealth,line width=0.2pt] (0,-0.5) -- (0,2.5);
+			\coordinate (a) at (0.5,1.9);
+			\coordinate (b) at (4,2.2);
+			\coordinate[label=below:$a$] (a0) at (0.5,0);
+			\coordinate[label=below:$b$] (b0) at (4,0);
+			\filldraw[fill=gray!20,draw,thick]
+			(a0) -- (a) .. controls (1,2.8) and (2.7,0.4) .. (b) -- (b0) -- cycle;
+			\node[above right,outer sep=0.2cm, rounded corners,
+			fill=yellow!20,draw=gray,text=red!60!black,scale=0.6]
+			at (b) {$\displaystyle \int_a^b {f(x)\,\mathrm{d}x} = F(b) - F(a)$};
+		\end{tikzpicture}
+		
+	\section{计数器counter}
+	
+		
+		
+	
+	\bibliography{articles}
+	\begin{thebibliography}{99}
+		\bibitem{pa} H.~Partl: \emph{German \TeX},
+		TUGboat Volume~9, Issue~1 (1988)
+	\end{thebibliography}
+	
 	\backmatter
 		
 	\appendix
+	
+	\printindex
 	
 \end{document}
