@@ -78,9 +78,13 @@
 \newfancytheorem[section]{newcor}{Corollary 推论}{$\heartsuit$}
 \newfancytheorem{newdef}{定义}{$\spadesuit$}[fancydef]
 
-
+\newtheorem{math_example}{例}[section]
 
 \usepackage{makeidx} % 务必放到最后
+
+\newcommand{\importanttext}[1]{\uline{#1}}
+
+
 
 \title{概率论与数理统计学习笔记}
 \author{Roger Young}
@@ -88,7 +92,7 @@
 
 \date{编译时间：\today}
 
-\begin{document}
+\begin{document}	
 	\maketitle
 	\tableofcontents
 	\newpage
@@ -663,6 +667,14 @@ $ P\left( N\left( 1 \right) \geq 2 \right) =1-P\left( N\left( 1 \right)=0  \righ
 	\chapter{假设检验}
 	\section{假设检验的基础知识}
 	假设检验是统计推断的另一类重要问题。在\uline{总体的分布函数完全未知}或\uline{只知其形式、但不知其参数}的情况下，为了推断总体的某些未知特性，提出某些关于总体的假设。然后根据样本对所提出的假设做出是接受还是拒绝的决策。假设检验就是做出这一决策的过程。
+	
+	\begin{math_example}
+		某车间用一台包装机器包装葡萄糖。袋装糖的净重是一个随机变量，它\importanttext{服从正态分布}。当机器正常工作时，其均值为$ 0.5kg $，标准差为$ 0.015kg $。某日开工后为检测机器是否正常工作，随机抽取它所包装的9袋糖，称得净重为（$ kg $）：
+		\begin{center}
+			0.497, 0.506, 0.518, 0.524, 0.498, 0.511, 0.520, 0.515, 0.5512
+		\end{center}		
+		问机器是否正常工作？
+	\end{math_example}
 	
 	
 	\section{假设检验问题的$ P $ 值法}
