@@ -82,7 +82,7 @@
 
 \usepackage{makeidx} % 务必放到最后
 
-\newcommand{\importanttext}[1]{\uline{#1}}
+\newcommand{\inlinekeywords}[1]{\uline{#1}}
 
 
 
@@ -97,11 +97,12 @@
 	\tableofcontents
 	\newpage
 	
+\part{\LaTeX 基本使用说明}
 	\chapter{\LaTeX 基本使用说明}
-	\section{入门常识}
-	
-	\LaTeX 会默认丢弃命令后的空白字符。如果希望在命令后的到一个空白字符，可以在命令后加上\{\}和一个空格，或者加上一个特殊的空白距离命令。
-	\LaTeX 源文件中可以使用\%来表示注释，\LaTeX 在处理文件时，会忽略\%后的改行剩余文本。如果需要使用较长的注释（注释块），可以使用verbatim包。
+		\section{入门常识}
+		
+		\LaTeX 会默认丢弃命令后的空白字符。如果希望在命令后的到一个空白字符，可以在命令后加上\{\}和一个空格，或者加上一个特殊的空白距离命令。
+		\LaTeX 源文件中可以使用\%来表示注释，\LaTeX 在处理文件时，会忽略\%后的改行剩余文本。如果需要使用较长的注释（注释块），可以使用verbatim包。
 		\section{页面布局}
 				\subsection{分页、分段、断行和断字}
 		有必要时\LaTeX 会进行必要的分页、断行和断字。在特殊情况下，需要使用命令指示\LaTeX 进行分页、分段、断行和断字。这些命令包括：
@@ -522,8 +523,18 @@ $ P\left( N\left( 1 \right) \geq 2 \right) =1-P\left( N\left( 1 \right)=0  \righ
 【注】上面的指数分布和泊松分布参考了阮一峰大牛的博客：“泊松分布和指数分布：10分钟教程”，在此说明，也对其表示感谢！
 
 
+\part{高等数学知识}
+	\chapter{函数与极限}
+	\chapter{导数与微分}
+	\section{导数的概念}
+	\chapter{微分中值定理与导数的应用}
+	\chapter{不定积分}
+	\chapter{定积分}
+	\chapter{定积分的应用}
+	\chapter{微分方程}
+	
 
-
+\part{概率论与数理统计}
 
 	\chapter{基本概念汇总}
 	\section{基本概念}
@@ -576,34 +587,110 @@ $ P\left( N\left( 1 \right) \geq 2 \right) =1-P\left( N\left( 1 \right)=0  \righ
 			C_a ^r =\binom{a}{r}=\frac{a!}{r!(a-r)!}=\frac{a(a-1)\dots (a-r+1)}{r!}
 		\end{equation}
 	\section{重要公式的证明}
+	
 	\chapter{随机变量及其分布}
+	
 	\section{离散型随机变量及其分布律}
-	\begin{tabular}{|l|c|c|}
-		\hline
-		常用分布 & 分布律 & 分布函数 \\
-		\hline
-		(0-1) 分布 & $
-		P\left\lbrace X=k\right\rbrace =p^k\left( 1-p\right) ^{1-k},\hspace{1em}k=0,1 \hspace{1em}\left( 0<p<1\right) 
-		$ & \\
-		\hline
-	\end{tabular}
+		\begin{definition}
+			如果一个随机变量，其所有可能取到得值是\inlinekeywords{有限个}或\inlinekeywords{可列无限多个}\footnote{可列：可以理解为这个集合可以找到一种关系，使其与自然数集$ N $的一一对应关系。自然数集有无穷个元素，所以如果一个集合可以与$ N $一一对应，自然也有无穷个元素。}，则称该随机变量为离散型随机变量。
+		\end{definition}
+		
+		
+		\begin{tabular}{|l|c|c|}
+			\hline
+			常用分布 & 分布律 & 分布函数 \\
+			\hline
+			(0-1) 分布 & $
+			P\left\lbrace X=k\right\rbrace =p^k\left( 1-p\right) ^{1-k},\hspace{1em}k=0,1 \hspace{1em}\left( 0<p<1\right) 
+			$ & \\
+			\hline
+		\end{tabular}
 
-\begin{tabular}{l*{6}{c}r}
-	Team              & P & W & D & L & F  & A & Pts \\
-	\hline
-	Manchester United & 6 & 4 & 0 & 2 & 10 & 5 & 12  \\
-	Celtic            & 6 & 3 & 0 & 3 &  8 & 9 &  9  \\
-	Benfica           & 6 & 2 & 1 & 3 &  7 & 8 &  7  \\
-	FC Copenhagen     & 6 & 2 & 1 & 3 &  5 & 8 &  7  \\
-\end{tabular}
+	\begin{tabular}{l*{6}{c}r}
+		Team              & P & W & D & L & F  & A & Pts \\
+		\hline
+		Manchester United & 6 & 4 & 0 & 2 & 10 & 5 & 12  \\
+		Celtic            & 6 & 3 & 0 & 3 &  8 & 9 &  9  \\
+		Benfica           & 6 & 2 & 1 & 3 &  7 & 8 &  7  \\
+		FC Copenhagen     & 6 & 2 & 1 & 3 &  5 & 8 &  7  \\
+	\end{tabular}
  
+
+
 
 
 
 	\section{连续型随机变量及其概率密度}
 	\section{多维随机变量及其分布}
 	\section{随机变量的数学特征}
+	
+	\chapter{常用数学分布汇总}
+		\section{常用描述数学分布的值}
+			\subsection{Probability density function}
+			\subsection{Cumulative distribution function}
+			\subsection{Expected value}
+			\subsection{Mean}
+			\subsection{Median}
+			\subsection{Mode}
+			\subsection{Variance}
+			\subsection{偏度：Skewness}
+				在概率论和数理统计中，偏度用来衡量随机变量概率分布对称性。
+			\subsection{峰度：Kurtosis}
+			\subsection{Entropy}
+			\subsection{Moment-generating function}
+			\subsection{Characteristic function}
+			
+		
+		\section{$ \beta $ 分布：Beta distribution}
+		\section{柯西分布：Caushy Distribution}
+		\section{卡方分布：Chi-Squared Distribution}
+		\section{指数分布：Exponential Distribution}
+		\section{$ F $分布：$ F $ Distribution}
+		\section{$ \Gamma $ 分布：$ \Gamma $ Distribution}
+		\section{拉普拉斯分布：Laplace Distribution}
+		\section{对数正态分布：Log-normal distribution}
+			\begin{equation}
+				p(x|m,s) = \frac{1}{sx \sqrt{2\pi}}\cdot e^{\frac{-(lnx-m)^2}{2s^2}}
+			\end{equation}
+		\section{正态分布：Normal Distribution}
+			参考\hyperref[normal_distribution_function]{公式}
+			\begin{equation}
+				p(x|\mu,\delta) = \frac{1}{\delta \sqrt{2\pi}}\cdot e^{\frac{-(x-\mu)^2}{2\delta^2}}
+			\end{equation}\label{normal_distribution_function}
+		\section{帕累托分布：Pareto distribution}
+		\section{$ t $分布：Student's $ t $-distribution}
+		\section{均匀分布：Uniform distribution}
+		\section{韦布尔分布：Weibull Distribution}
+		
+		\section{伯努利分布：Bernoulli Distribution}
+			伯努利分布(\textit{Bernoulli distribution})又名两点分布或$ 0-1 $分布，介绍伯努利分布前首先需要引入伯努利试验（B\textit{ernoulli trial}）。
+			\begin{equation}
+				P(b|p)= \begin{cases}
+					p & \text{if }  b =true,\\
+					1=p & \text{if }   b =false
+				\end{cases}
+			\end{equation}
+		
+		\section{二项分布：Binomial Distribution}
+			二项分布(Binomial distribution)是n重伯努利试验成功次数的离散概率分布。
+		\section{几何分布：Geometric Distribution}
+		\section{超几何分布：Hypergeometric Distribution}
+		\section{负二项分布：Negative Binomial Distribution}
+		\section{泊松分布：Poisson Distribution}
+			\begin{equation}
+				P(i|\mu)= \frac{e^{-\mu}\mu^{i}}{i!}
+			\end{equation}
+		
+		
+		
+		
+		
+	
+	
+	
 	\chapter{大数定律及中心极限定律}
+	
+	
 	\chapter{参数估计}
 	统计推断的基本问题可以分为两类，一类是估计问题，另一类是假设检验问题。
 	\section{点估计}
@@ -669,7 +756,7 @@ $ P\left( N\left( 1 \right) \geq 2 \right) =1-P\left( N\left( 1 \right)=0  \righ
 	假设检验是统计推断的另一类重要问题。在\uline{总体的分布函数完全未知}或\uline{只知其形式、但不知其参数}的情况下，为了推断总体的某些未知特性，提出某些关于总体的假设。然后根据样本对所提出的假设做出是接受还是拒绝的决策。假设检验就是做出这一决策的过程。
 	
 	\begin{math_example}
-		某车间用一台包装机器包装葡萄糖。袋装糖的净重是一个随机变量，它\importanttext{服从正态分布}。当机器正常工作时，其均值为$ 0.5kg $，标准差为$ 0.015kg $。某日开工后为检测机器是否正常工作，随机抽取它所包装的9袋糖，称得净重为（$ kg $）：
+		某车间用一台包装机器包装葡萄糖。袋装糖的净重是一个随机变量，它\inlinekeywords{服从正态分布}。当机器正常工作时，其均值为$ 0.5kg $，标准差为$ 0.015kg $。某日开工后为检测机器是否正常工作，随机抽取它所包装的9袋糖，称得净重为（$ kg $）：
 		\begin{center}
 			0.497, 0.506, 0.518, 0.524, 0.498, 0.511, 0.520, 0.515, 0.5512
 		\end{center}		
