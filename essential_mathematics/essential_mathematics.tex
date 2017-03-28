@@ -1,20 +1,30 @@
 % !TeX spellcheck = en_US
 % !TeX encoding = UTF-8
 \documentclass[11pt]{book}
+\usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage[english]{babel}
 \usepackage{ctex}
+\usepackage{enumitem}
+\usepackage{environ}
+\usepackage{listings}
 
+\usepackage{xcolor}
+\usepackage{inconsolata}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+
+\usepackage{mathrsfs}
 \usepackage{tikz}
 \usepackage{xcolor}
 
-\usepackage{environ}
-\usepackage{amsmath}
-\usepackage{mathrsfs}
-\usepackage[english]{babel}
-\usepackage{enumitem}
-\usepackage{amsfonts}
 \usepackage{xparse}
+
+\usepackage{makeidx}
+\makeindex
+
 \usepackage[top=3cm,bottom=3cm,left=3cm,right=3cm,headsep=10pt,a4paper]{geometry}
 \usepackage{pgfplots}
 \usepackage[colorlinks, CJKbookmarks]{hyperref}
@@ -76,14 +86,15 @@
 % \newfancytheorem[<number within>]{<name>}{<head>}{<symbol>}[<style>]
 \newfancytheorem[chapter]{newthem}{Theorem}{$\clubsuit$}
 \newfancytheorem[section]{newcor}{Corollary 推论}{$\heartsuit$}
-\newfancytheorem{newdef}{定义}{$\spadesuit$}[fancydef]
+% \newfancytheorem{newdef}{定义}{$\spadesuit$}[fancydef]
+\newtheorem{newdef}{\textbf{\uline{定义}}}[chapter]
 
 \newtheorem{math_example}{例}[section]
 
 \usepackage{makeidx} % 务必放到最后
 
 \newcommand{\inlinekeywords}[1]{\uline{#1}}
-
+\newcommand{\inlineglossary}[1]{\uwave{#1}\index{#1}}
 
 
 \title{概率论与数理统计学习笔记}
@@ -525,6 +536,49 @@ $ P\left( N\left( 1 \right) \geq 2 \right) =1-P\left( N\left( 1 \right)=0  \righ
 
 \part{高等数学知识}
 	\chapter{函数与极限}
+		初等函数的研究对象基本上是\inlinekeywords{不变的量}，而高等数学的研究对象则是\inlinekeywords{变动的量}。所谓\inlinekeywords{函数关系}就是变量之间的依赖关系，\inlinekeywords{极限方法}是研究变量的一种基本方法。本章将介绍映射、函数、极限和函数的连续性等基本概念以及它们的一些性质。
+	\section{映射与函数}
+		映射是现代数学中的一个基本概念，而函数是微积分的研究对象，也是映射的一种。本节主要介绍映射、函数及有关概念，函数的性质与运算等。
+		
+		\subsection{映射}
+		\subsubsection{映射的概念}
+		\begin{newdef}
+			设$ X $、$ Y $是两个非空集合，如果存在一个法则$ f $，使得对$ X $中的每个元素下，按法则$ f $，在$ Y $中有唯一确定的元素$ y $与之对应，那么称$ f $为从$ X $到$ Y $的\inlineglossary{映射}，记作 \\		
+			\centerline{$ f:X\rightarrow Y $，}
+			其中$ y $称为元素$ x $（在映射$ f $下）的\inlineglossary{像}，并记作$ f(x) $，即 \\
+			\centerline{$ y=f(x) $，}
+			而元素$ x $称为元素$ y $（在映射f下）的一个\inlineglossary{原像}；集合$ X $称为映射$ f $的定义域，记作$ D_f $，即$ D_f=X $；$ X $中所有元素的像所组成的集合称为映射$ f $的值域，记作$ R_f $或$ f(X) $，即
+			\centerline{$ R_f=f(x)=\left\lbrace f(x)|x\in X \right\rbrace  $。}
+		\end{newdef}
+		
+		在以上的映射定义中，需要注意：
+		\begin{enumerate}
+			\item 构成一个映射必须具备一下三个要素：
+				\begin{itemize}
+					\item 集合$ X $，即定义域$ D_f=X $；
+					\item 集合$ Y $，即值域的范围；
+					\item 对应法则，使对于每个$ x\in X $，有唯一确定的$ y=f(x) $与之对应；
+				\end{itemize}
+			\item 对每个$ x\in X $，元素$ x $的像$ y $是唯一的；而对每个$ y\in R_f $，元素$ y $的原像不一定是唯一的；映射$ f $的值域$ R_f $是$ Y $的一个子集，即$ R_f \in Y $，不一定$ R_f=Y $。
+		\end{enumerate}
+		
+		设$ f $是集合$ X $到集合$ Y $的映射，若$ R_f=Y $，即$ Y $中的任一元素$ y $都是$ X $中某元素的像，则称$ f $为$ X $到$ Y $上的映射或\inlineglossary{满射}；若对$ X $中任意两个不同的元素$ x_1 \neq x_2 $，它们的像$ f(x_1)\neq f(x_2) $，则称$ f $为$ X $到$ Y $的\inlineglossary{单射}\index{单射}；若映射$ f $既是单射又是满射，则称$ f $为\inlineglossary{一一映射}（或\inlineglossary{双射}）。
+		
+		映射又称为\inlineglossary{算子}。根据集合X、Y的不同情形，在不同的数学分支中，映射有不同的惯用名称。例如，从非空集合X到数集Y的映射又称为X上的\inlineglossary{泛函}，从非空集合X到它自身的映射又称为X上的\inlineglossary{变换}，从实数集（或其子集）X到实数集Y的映射通常称为定义在X上的\inlineglossary{函数}。
+		
+		\subsubsection{逆映射与复合映射}
+		
+		\subsection{函数}
+		
+		\subsubsection{函数的概念}
+		
+		\begin{tikzpicture}
+			\begin{axis} [axis lines=center]
+				\addplot [domain=-3:3, thick, smooth] { x^3 - 5*x } ;
+				\addplot [domain=-3:3, thick, smooth] { x^3};
+			\end{axis}		
+		\end{tikzpicture}
+	
 	\chapter{导数与微分}
 	\section{导数的概念}
 	\chapter{微分中值定理与导数的应用}
@@ -802,5 +856,6 @@ $ P\left( N\left( 1 \right) \geq 2 \right) =1-P\left( N\left( 1 \right)=0  \righ
 	\chapter{方差分析}
 	\chapter{回归分析}
 	
+\printindex
 	
 \end{document}
