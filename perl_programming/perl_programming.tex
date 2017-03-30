@@ -1,0 +1,277 @@
+% !TeX spellcheck = en_US
+% !TeX encoding = UTF-8
+\documentclass[11pt]{book}
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm,
+			headsep=10pt,a4paper] {geometry}
+			
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage[english]{babel}
+
+\usepackage{ctex}
+\usepackage{enumitem}
+\usepackage{environ}
+
+\usepackage[colorlinks, CJKbookmarks]{hyperref}
+
+\usepackage{inconsolata}
+\usepackage{listings}
+\usepackage{makeidx}
+\usepackage{mathrsfs}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{polar}
+
+\usepackage{tikz}
+\usepackage{ulem}
+\usepackage{xcolor}
+\usepackage{xparse}
+
+\usepackage{makeidx} % 务必放到最后
+
+\newcommand{\programmingkeywords}[1]{\textit{{\color{blue}#1}}}
+\newcommand{\inlineglossary}[1]{\uwave{#1}\index{#1}}
+\newcommand{\programminglanguage}[1]{\textbf{#1}}
+
+
+\title{Perl编程语言学习笔记}
+\author{Roger Young}
+\setCJKmainfont{楷体}
+
+\date{编译时间：\today}
+
+\begin{document}	
+	\maketitle
+	\tableofcontents
+	\newpage
+	
+	\chapter{语言简介}
+		\section{语言进化简史}
+			\programminglanguage{Perl}的全称可以认为是“\textit{Practical Extraction and Report Language}”，也可以认为是“\textit{Pathological Eclectic Rubbish Listeria}”。一般来说，以大写的“P”开头的“Perl”是指Perl编程语言，以小写字母“p”开头的“perl”是指用来解释和运行Perl程序的程序（或曰解释器，interpreter）。
+		\section{基本概念}
+			
+		\section{基本语法}
+			本部分的基本语法是\programminglanguage{Perl}语法体系中最最基础的部分，包括：
+			\begin{itemize}
+				\item \programminglanguage{Perl}中所有的语句需要以“\textbf{;}”结束；
+			\end{itemize}
+		\section{标准或推荐的程序框架}
+			对于一般的\programminglanguage{Perl}程序（当然也包括其他编程语言写得脚本、程序），建议采用utf-8编码，对于个人来说，常用的脚本框架如下：
+			
+\lstset{language=Perl} 
+\begin{lstlisting}
+#!/usr/bin/perl
+
+use strict;
+use utf8;
+use warnings;
+
+# 其他代码
+\end{lstlisting}
+
+		\section{基本编辑过程}
+		\section{基本运行方法}
+		
+	\chapter{关键字}
+	
+	\chapter{输入输出}
+		\section{输出}
+		\section{获取用户输入}
+		
+	\chapter{基本数据结构}
+		\programminglanguage{Perl}语言中没有类似于\programminglanguage{C}、\programminglanguage{C++}中的\programmingkeywords{int}、\programmingkeywords{long}等表示对象或者变量类型的关键字。在\programminglanguage{Perl}中变量的\uline{最基本类型}根据其所参与的运算来决定。\uline{最基本类型}是指数、字符、字符串等。当个\uline{最基本类型}类型组成的变量或对象，在\programminglanguage{Perl}中称为标量（Scalar）。由多个标量，可以组成数组、字典等其他相对复杂类型。在\programminglanguage{Perl}可以通过变量标识符前的sigil，来确定变量的类型：
+		
+		\begin{tabular}{|c|l|l|}
+			\hline
+			Sigil & 变量类型 & 举例 \\
+			\hline
+			\$ & 标量、scalar & \lstinline!my $days =30;! \\
+			\hline
+			@ & 数组 & \lstinline!my @months = ("January", "February", "March")! \\
+			\hline
+			\% & 字典、Hash & \lstinline!my \%months = ('Jan' = 'January','Feb' = February,'Mar' = 'March');! \\
+			\hline
+		\end{tabular}
+	
+		\section{数字}
+			\programminglanguage{Perl}依赖于低层的\programminglanguage{C}库来表示数字。在\programminglanguage{Perl}中，所有的数字在内部都以双精度浮点数（double-precision floating-point value）保存的。 这意味着，\programminglanguage{Perl}对数字的精度和位数可能有些要求。同时，也意味着，\programminglanguage{Perl}中没有整数（integer）或者浮点数（floating-number）的概念。
+			
+			\programminglanguage{Perl}数字举例：
+\lstset{language=Perl} 
+\begin{lstlisting}
+#!/usr/bin/perl
+
+use strict;
+use utf8;
+use warnings;
+use diagnostics;
+
+use v5.10;
+
+my $chhogori_altitude  = 8611;
+my $mariana_trench_altitude = -11034;
+
+my $chhogori_altitude_oct = 0206;
+my $chhogori_altitude_hex = 0x21A3;
+my $chhogori_altitude_bin = 0b10000110100011;
+my $chhogori_altitude_bin_sep = 0b10_000_110_100_011;
+
+my $planck_length = 1.616229e35;
+my $planck_time = 5.39116E-44;
+my $height = 1.73;
+my $light_speed = 299_792_458;
+my $sackur_tetrode_constant = -1.1517084;
+my $atomic_mass = 1.660539040e-27;
+
+use v5.22;
+my $hex_exponent = 0x1f.0p3;
+\end{lstlisting}
+
+			在\programminglanguage{Perl}中，数字可以直接通过字面值输入。所谓“字面值”是指，在源程序中直接存在的、不需要在程序运行过程中经过运算或者IO操作就能的得到的值。
+			
+			通过数字字面值可以直接以十进制、八进制、十六进制、二进制表示整数。（计算机科学中的）整数的字面值可以是以下几种形式：
+			\begin{itemize}
+				\item 以阿拉伯数字开头的、连续的一个或多个阿拉伯数字；
+				\item 以“+”或者“-”开头的，连续的一个或多个阿拉伯数字；
+				\item 以“+0b”或者“-0b”开头的，连续的一个或多个“0”、“1”；
+				\item 以“+0”或者“-0”开头的，连续的一个或多个小于8的阿拉伯数字；
+				\item 以“+0x”或者“-0x”开头的，连续的一个或多个的字符，这些字符包括所有的阿拉伯数字、a、b、c、d、e、f、A、B、C、D、E、F；
+				\item 以字符“\_”分隔的上述类型；
+			\end{itemize}
+			
+			浮点数的表示，跟我们常见的写法一致。浮点数可以以“.”开始、可以以表示整数的“+”或者“-”开始。浮点数也可以包含字母“E”或者“e”来表示科学计数法。对于5.22版以后的\programminglanguage{Perl}，也可以使用形如“\$hex\_exponent”的形式表示浮点数。
+			
+			\subsection{数字的一般操作}
+			\programminglanguage{Perl}支持数字常用的加、减、乘、除等算法，其对应的运算符如下：
+			
+			\begin{tabular}{|c|c|l|l|}
+				\hline
+				操作 & 符号 & 举例 & 结果\\
+				\hline
+				加 & + & 3 + 2 & 5 \\
+				\hline
+				减 & - & 3 - 2 & 1 \\
+				\hline
+				乘 & * & 3 * 2 & 6 \\
+				\hline
+				除 & / & 3 / 2 & 1.5 \\
+				\hline
+				模\footnotemark & \% & 3 \% 2 & 1 \\
+				\hline
+				幂 & ** & 3 ** 2 & 9 \\
+				\hline
+			\end{tabular}
+			\footnotetext{对于有负数参与的求模运算，其结果可能在不同的机器上不同。这意味着“\lstinline!say -10 \% 3;!”在可能产生不同的结果！！}
+		
+		\section{字符串}
+			作为一门以字符处理为特长的语言，\programminglanguage{Perl}的字符串功能相当强大。字符串字面值可以有两种表示形式，分别是：
+			
+			\begin{itemize}
+				\item 以英文单引号，“'”括起来的字符串：在这种情况下，除了“'”和“\textbackslash”外其他的字符都是代表其自身。（之所以是这两个，可能是因为，“'”已经用来分隔字符串了，如果想要在字符串中包含“'”，必须采用特殊的办法，而“\textbackslash”被选中了。相应的，字符串中可以通过“\textbackslash'”和“\textbackslash\textbackslash”来包含这两个特殊字符。）
+				\item 以英文双引号，“"”括起来的字符串。这类字符串与其他编程语言中的字符串比较类似。字符串中含有特殊的命令，可以对字符串进行必要的操作。也是在后续描述中篇幅比较大的一种。
+			\end{itemize}
+		
+		\subsection{转移字符}
+			在\programminglanguage{Perl}中，以英文双引号，“"”括起来的字符串，英文称为“Double-Quoted String Literal”。Double-Quoted String Literal可以包含一些特殊意义的字符组合：
+			\begin{tabular}{|c|l|}
+				\hline
+				转义字符组合 & 意义 \\
+				\hline
+				\textbackslash n & 换行 \\
+				\hline
+				\textbackslash r & 回车 \\
+				\hline
+				\textbackslash t & Tab\\
+				\hline
+				\textbackslash f & Formfeed \\
+				\hline
+				\textbackslash b & 退格 \\
+				\hline
+				\textbackslash a & alarm，响一声 \\
+				\hline
+				\textbackslash e & ASCII码中的Escape字符 \\
+				\hline
+				\textbackslash 0$ dd $ & 以八进制表示的ASCII字符 \\
+				\hline
+				\textbackslash x$ hh $ & 以十六进制表示的ASCII字符 \\
+				\hline
+				\textbackslash $ N \left\lbrace charactername \right\rbrace $ & charactername表示的Unicode字符 \\
+				\hline
+				\textbackslash c$ C $ & 控制字符 \\
+				\hline
+				\textbackslash\textbackslash & \textbackslash \\
+				\hline
+				\textbackslash " & " \\
+				\hline
+				\textbackslash l & 下一个字符小写 \\
+				\hline
+				\textbackslash L & 其后的字符小写，直到遇到\textbackslash E \\
+				\hline
+				\textbackslash u & 下一个字符大写 \\
+				\hline
+				\textbackslash U & 其后的字符小写，直到遇到\textbackslash E \\
+				\hline
+				\textbackslash Q & Quote nonword characters by adding a backslash until \textbackslash E \\
+				\hline
+				\textbackslash E & 终止\textbackslash L、\textbackslash U、\textbackslash Q \\
+				\hline
+			\end{tabular}
+			\subsection{字符串中的变量插入：variable interpolated}
+				可以直接在以英文双引号，“"”括起来的字符串中插入变量。
+				
+			\subsection{字符串程序示例}
+\lstset{language=Perl} 
+\begin{lstlisting}
+#!/usr/bin/perl
+
+use strict;
+use utf8;
+use warnings;
+use diagnostics;
+
+my $light_speed = 299_792_458;
+
+print 'The speed of light in vacuum is important in physics.';
+print "\n";
+print "可能乱码呀，稍后解决：\N{SNOWMAN}、\x{2668}";
+print "The speed of light in vacuum is important in physics.\a\n";
+print "The speed of light in vacuum is $light_speed !"
+\end{lstlisting}
+		
+		\section{基本数据类型之间的互换}
+		\section{内置类型}
+		
+	\chapter{内置变量}
+	
+	\chapter{控制语句}
+		\section{条件}
+		\section{循环}
+		
+	\chapter{函数}
+		\section{内置函数}
+		
+	\chapter{模块化机制和实践}
+	
+	\chapter{面向对象机制}
+		\section{定义类}
+		\section{封装}
+		\section{继承}
+		\section{多态}
+		\section{接口}
+	\chapter{标准库介绍}
+	
+	\chapter{常用应用场景}
+		\section{网络}
+		\section{字符操作}
+		\section{数据库}
+		\section{Json操作}
+		\section{xml操作}
+		\section{文件、目录操作}
+		\section{进程管理}
+		\section{线程管理}
+		\section{正则表达式}
+	
+
+\end{document}
